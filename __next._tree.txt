@@ -1,3 +1,3 @@
 :HL["/invest-iq/_next/static/chunks/0-mrfpu_3m-dh.css","style"]
 :HL["/invest-iq/_next/static/chunks/0ymk9o35~uvrc.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"p5uwlZvGNSdYbXlVo3vrH"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"zdaZsKFpVWva1_j1iGNGy"}
