@@ -1,0 +1,11 @@
+.transactionCard {
+  &__position {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  &__title {
+    color: #52555f;
+  }
+}

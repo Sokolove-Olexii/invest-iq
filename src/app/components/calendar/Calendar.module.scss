@@ -1,0 +1,23 @@
+.calendarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.customDateInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #52555f;
+  cursor: pointer;
+  width: 90px;
+  padding: 0;
+
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+}
+

@@ -1,0 +1,265 @@
+.expanses {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #ffffff;
+
+  &__topSection {
+    background-color: #f5f6fb;
+    border-bottom-left-radius: 120px;
+    padding: 40px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  &__headerRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  &__backButton {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: translateX(-4px);
+    }
+  }
+
+  &__formWrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__inputGroup {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #ffffff;
+    border-radius: 16px;
+    background-color: transparent;
+  }
+
+  &__inputField {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    color: #52555f;
+    outline: none;
+
+    &::placeholder {
+      color: #a6aab4;
+    }
+  }
+
+  &__separator {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+  }
+
+  &__customSelectContainer {
+    position: relative;
+    width: 100%;
+  }
+
+  &__selectHeader {
+    width: 100%;
+    padding: 16px 20px;
+    background-color: transparent;
+    font-size: 14px;
+    color: #52555f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    &--placeholder {
+      color: #a6aab4;
+    }
+  }
+
+  &__dropdownArrow {
+    transition: transform 0.3s ease;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__optionsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    margin-top: 8px;
+    padding: 8px 0;
+    list-style: none;
+    z-index: 100;
+    max-height: 240px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #e0e0e0;
+      border-radius: 4px;
+    }
+  }
+
+  &__optionItem {
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #52555f;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background-color: #f5f6fb;
+      color: #fb7c2f;
+    }
+
+    &--active {
+      background-color: rgba(251, 124, 47, 0.1);
+      color: #fb7c2f;
+      font-weight: 600;
+    }
+  }
+
+  &__balanceContainer {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    background-color: transparent;
+    width: 100%;
+    height: 56px;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 280px;
+  }
+
+  &__amountWrapper {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+  }
+
+  &__amountInput {
+    width: 100%;
+    max-width: 70px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    text-align: right;
+    outline: none;
+
+    &::placeholder {
+      color: #000000;
+    }
+  }
+
+  &__currencySuffix {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    margin-left: 4px;
+  }
+
+  &__verticalSeparator {
+    width: 2px;
+    height: 100%;
+    background-color: #ffffff;
+  }
+
+  &__calculatorButton {
+    width: 40%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &__bottomSection {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  &__actionButtons {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  &__btnSubmit,
+  &__btnClear {
+    flex: 1;
+    padding: 16px 0;
+    border-radius: 16px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-align: center;
+    transition:
+      opacity 0.2s ease,
+      transform 0.1s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &__btnSubmit {
+    background-color: #fb7c2f;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(251, 124, 47, 0.3);
+  }
+
+  &__btnClear {
+    background-color: #f5f6fb;
+    color: #52555f;
+  }
+}

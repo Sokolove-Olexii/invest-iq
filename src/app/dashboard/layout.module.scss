@@ -1,0 +1,13 @@
+.layout {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+}

@@ -1,0 +1,42 @@
+.logo {
+  text-decoration: none;
+
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 31px;
+    padding-left: 20px;
+  }
+
+  &__shapeLight {
+    position: absolute;
+    left: -3px;
+    bottom: 7px;
+    width: 33px;
+    height: 26px;
+    background-color: #fb7c2f;
+    opacity: 0.2;
+    border-radius: 8px;
+    z-index: 1;
+  }
+
+  &__shapeDark {
+    position: absolute;
+    left: 8px;
+    width: 33px;
+    height: 26px;
+    background-color: #fb7c2f;
+    border-radius: 8px;
+    z-index: 2;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 3;
+    font-family: sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: #000;
+  }
+}
