@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
 import styles from "./Calendar.module.scss";
+import CalendarIcon from "../../../../public/icons/CalendarIcon.svg";
 
 interface CalendarProps {
   selectedDate?: Date | null;
@@ -28,12 +29,7 @@ export default function Calendar({
 
   return (
     <div className={styles.calendarWrapper}>
-      <Image
-        src="/icons/CalendarIcon.svg"
-        alt="Calendar"
-        width={20}
-        height={20}
-      />
+      <Image src={CalendarIcon} alt="Calendar" width={20} height={20} />
       <DatePicker
         selected={date}
         onChange={handleChange}

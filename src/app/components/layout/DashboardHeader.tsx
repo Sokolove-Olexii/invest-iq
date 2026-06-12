@@ -7,11 +7,16 @@ import supabase from "@/lib/supabase";
 import Image from "next/image";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
+import QuitModal from "../modals/quitModal/quitModal";
+import LogOutIcon from "../../../../public/icons/LogOutIcon.svg";
 
 export default function DashboardHeader() {
   const router = useRouter();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
+
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -23,8 +28,13 @@ export default function DashboardHeader() {
   });
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/");
+    setIsLoggingOut(true);
+    try {
+      await supabase.auth.signOut();
+      router.push("/");
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
 
   return (
@@ -49,17 +59,19 @@ export default function DashboardHeader() {
 
           <button
             className={styles.header__logoutButton}
-            onClick={handleLogout}
+            onClick={() => setIsQuitModalOpen(true)}
           >
-            <Image
-              src="/icons/LogOutIcon.svg"
-              alt="LogOutIcon"
-              width={16}
-              height={16}
-            />
+            <Image src={LogOutIcon} alt="LogOutIcon" width={16} height={16} />
           </button>
         </div>
       </div>
+
+      <QuitModal
+        isOpen={isQuitModalOpen}
+        onClose={() => setIsQuitModalOpen(false)}
+        onConfirm={handleLogout}
+        isLoading={isLoggingOut}
+      />
     </motion.header>
   );
 }

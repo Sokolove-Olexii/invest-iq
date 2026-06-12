@@ -1,21 +1,26 @@
 {
   "name": "invest-iq",
   "version": "0.1.0",
+  "homepage": "https://Sokolove-Olexii.github.io/invest-iq",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "predeploy": "pnpm run build && touch out/.nojekyll",
+    "deploy": "gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@headlessui/react": "^2.2.10",
     "@mui/material": "^9.0.1",
     "@react-oauth/google": "^0.13.5",
     "@supabase/supabase-js": "^2.106.1",
     "formik": "^2.4.9",
     "framer-motion": "^12.40.0",
+    "gh-pages": "^6.3.0",
     "motion": "^12.40.0",
     "next": "16.2.6",
     "next-auth": "^4.24.14",

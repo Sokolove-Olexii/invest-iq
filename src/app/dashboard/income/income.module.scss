@@ -200,20 +200,13 @@
     background-color: #ffffff;
   }
 
-  &__calculatorButton {
+  &__calculatorIcon {
     width: 40%;
     height: 100%;
-    border: none;
-    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    outline: none;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.5);
-    }
+    pointer-events: none;
   }
 
   &__bottomSection {
@@ -233,6 +226,9 @@
 
   &__btnSubmit,
   &__btnClear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
     padding: 16px 0;
     border-radius: 16px;

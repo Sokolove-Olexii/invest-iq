@@ -19,6 +19,7 @@ interface TransactionsState {
       created_at?: string;
     },
   ) => Promise<void>;
+  deleteTransaction: (id: string) => Promise<void>;
   getTotalIncome: () => number;
   getTotalExpanse: () => number;
 }
@@ -88,6 +89,29 @@ export const useTransactionsStore = create<TransactionsState>((set, get) => ({
       console.error(error);
     } finally {
       set({ isLoading: false });
+    }
+  },
+
+  deleteTransaction: async (id) => {
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) return;
+
+      const { error } = await supabase
+        .from("transactions")
+        .delete()
+        .eq("id", id);
+
+      if (error) throw error;
+
+      set((state) => ({
+        transactions: state.transactions.filter((t) => t.id !== id),
+      }));
+    } catch (error) {
+      console.error(error);
     }
   },
 }));

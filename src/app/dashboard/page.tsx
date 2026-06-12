@@ -4,9 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Calendar from "@/app/components/calendar/Calendar";
 import { useTransactionsStore } from "@/store/useTransactionsStore";
-import TransactionCard from "@/app/components/transactionCard/TransactionCard";
+import { ThreeDots } from "react-loader-spinner";
+
 import { useState, useEffect } from "react";
 import { useBalanceStore } from "@/store/useBalanceStore";
+import GraphIcon from "../../../public/icons/GraphIcon.svg";
+import TransactionBoard from "@/app/components/transactionBoard/TransactionBoard";
+import SummaryBoard from "../components/summaryBoard/summaryBoard";
 
 export default function DashboardPage() {
   const { balance, isLoading, fetchBalance, updateBalance } = useBalanceStore();
@@ -35,12 +39,7 @@ export default function DashboardPage() {
           className={styles.dashboard__linkToCalculations}
         >
           <p>Перейти до розрахунків</p>
-          <Image
-            src="/icons/GraphIcon.svg"
-            alt="GraphIcon"
-            width={24}
-            height={24}
-          />
+          <Image src={GraphIcon} alt="GraphIcon" width={24} height={24} />
         </Link>
 
         <div className={styles.dashboard__balanceWrapper}>
@@ -62,7 +61,18 @@ export default function DashboardPage() {
               onClick={handleSave}
               disabled={isLoading}
             >
-              {isLoading ? "..." : "ПІДТВЕРДИТИ"}
+              {isLoading ? (
+                <ThreeDots
+                  visible={true}
+                  height="12"
+                  width="40"
+                  color="#52555f"
+                  radius="9"
+                  ariaLabel="three-dots-loading"
+                />
+              ) : (
+                "ПІДТВЕРДИТИ"
+              )}
             </button>
           </div>
         </div>
@@ -73,19 +83,11 @@ export default function DashboardPage() {
       </div>
 
       <div className={styles.dashboard__transactionsContainer}>
-        <h3 className={styles.dashboard__transactionsTitle}>
-          Останні транзакції
-        </h3>
+        <TransactionBoard />
+      </div>
 
-        <div className={styles.dashboard__transactionsList}>
-          {transactions.length > 0 ? (
-            transactions.map((transaction) => (
-              <TransactionCard key={transaction.id} transaction={transaction} />
-            ))
-          ) : (
-            <p className={styles.dashboard__emptyState}>Транзакцій ще немає</p>
-          )}
-        </div>
+      <div className={styles.dashboard__bottomSection}>
+        <SummaryBoard />
       </div>
 
       <div className={styles.dashboard__bottomNav}>

@@ -7,13 +7,20 @@ import Image from "next/image";
 import Calendar from "@/app/components/calendar/Calendar";
 import { useState, useRef, useEffect } from "react";
 import { expanseCategories } from "@/data/categoryData";
+import BackIcon from "../../../../public/icons/BackIcon.svg";
+import ArrowIcon from "../../../../public/icons/ArrowIcon.svg";
+import CalcIcon from "../../../../public/icons/CalcIcon.svg";
+import TransactionsModal from "../../components/modals/transactionsModal/transactionsModal";
+import { ThreeDots } from "react-loader-spinner";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Expanses() {
   const { balance, updateBalance } = useBalanceStore();
-  const { addTransaction } = useTransactionsStore();
+  const { addTransaction, isLoading } = useTransactionsStore();
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
   const [date, setDate] = useState<Date | null>(new Date());
 
   const [isOpen, setIsOpen] = useState(false);
@@ -59,12 +66,19 @@ export default function Expanses() {
     setDate(new Date());
   };
 
+  const handleClear = async () => {
+    setDescription("");
+    setCategory("");
+    setAmount("");
+    setDate(new Date());
+  };
+
   return (
     <section className={styles.expanses}>
       <div className={styles.expanses__topSection}>
         <div className={styles.expanses__headerRow}>
           <Link href="/dashboard" className={styles.expanses__backButton}>
-            <Image src="/icons/BackIcon.svg" alt="Back" width={24} height={24} />
+            <Image src={BackIcon} alt="Back" width={24} height={24} />
           </Link>
           <Calendar selectedDate={date} onChange={setDate} />
         </div>
@@ -90,7 +104,7 @@ export default function Expanses() {
               >
                 <span>{selectedCategoryLabel || "Категорія товару"}</span>
                 <Image
-                  src="/icons/ArrowIcon.svg"
+                  src={ArrowIcon}
                   alt="Arrow"
                   width={12}
                   height={7}
@@ -98,22 +112,30 @@ export default function Expanses() {
                 />
               </div>
 
-              {isOpen && (
-                <ul className={styles.expanses__optionsList}>
-                  {expanseCategories.map((cat) => (
-                    <li
-                      key={cat.id}
-                      className={`${styles.expanses__optionItem} ${category === cat.id ? styles["expanses__optionItem--active"] : ""}`}
-                      onClick={() => {
-                        setCategory(cat.id);
-                        setIsOpen(false);
-                      }}
-                    >
-                      {cat.label}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.ul
+                    className={styles.expanses__optionsList}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {expanseCategories.map((cat) => (
+                      <li
+                        key={cat.id}
+                        className={`${styles.expanses__optionItem} ${category === cat.id ? styles["expanses__optionItem--active"] : ""}`}
+                        onClick={() => {
+                          setCategory(cat.id);
+                          setIsOpen(false);
+                        }}
+                      >
+                        {cat.label}
+                      </li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
@@ -129,36 +151,50 @@ export default function Expanses() {
               <span className={styles.expanses__currencySuffix}>UAH</span>
             </div>
             <div className={styles.expanses__verticalSeparator}></div>
-            <button className={styles.expanses__calculatorButton}>
-              <Image
-                src="/icons/CalcIcon.svg"
-                alt="Calculator"
-                width={20}
-                height={20}
-              />
-            </button>
+            <div className={styles.expanses__calculatorIcon}>
+              <Image src={CalcIcon} alt="Calculator" width={20} height={20} />
+            </div>
           </div>
         </div>
       </div>
 
       <div className={styles.expanses__bottomSection}>
         <div className={styles.expanses__actionButtons}>
-          <button className={styles.expanses__btnSubmit} onClick={handleSubmit}>
-            ВВЕСТИ
+          <button
+            className={styles.expanses__btnSubmit}
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <ThreeDots
+                visible={true}
+                height="12"
+                width="40"
+                color="#ffffff"
+                radius="9"
+                ariaLabel="three-dots-loading"
+              />
+            ) : (
+              "ВВЕСТИ"
+            )}
           </button>
           <button
             className={styles.expanses__btnClear}
-            onClick={() => {
-              setDescription("");
-              setCategory("");
-              setAmount("");
-              setDate(new Date());
-            }}
+            onClick={() => setIsTransactionModalOpen(true)}
           >
             ОЧИСТИТИ
           </button>
         </div>
       </div>
+
+      <TransactionsModal
+        isOpen={isTransactionModalOpen}
+        onClose={() => setIsTransactionModalOpen(false)}
+        onConfirm={() => {
+          handleClear();
+          setIsTransactionModalOpen(false);
+        }}
+      />
     </section>
   );
 }

@@ -1,10 +1,28 @@
 .dashboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  flex: 1;
   background-color: #ffffff;
-  position: relative;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  @media (min-width: 768px) {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 583px;
+      background-color: #f5f6fb;
+      border-bottom-left-radius: 120px;
+      z-index: 0;
+    }
+  }
 
   &__topSection {
     background-color: #f5f6fb;
@@ -15,6 +33,20 @@
     align-items: center;
     z-index: 1;
     position: relative;
+    flex-shrink: 0;
+
+    @media (min-width: 768px) {
+      padding: 40px 80px 32px;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      background-color: transparent;
+      border-bottom-left-radius: 0;
+    }
+
+    @media (min-width: 1280px) {
+      padding: 40px 40px 32px;
+      position: relative;
+    }
   }
 
   &__linkToCalculations {
@@ -28,12 +60,38 @@
       font-size: 14px;
       font-weight: 500;
       color: #52555f;
+      white-space: nowrap;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin: 0;
+    }
+
+    @media (min-width: 1280px) {
+      position: relative;
+      z-index: 2;
     }
   }
 
   &__balanceWrapper {
     width: 100%;
     max-width: 320px;
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+    }
+
+    @media (min-width: 1280px) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: max-content;
+      max-width: none;
+      z-index: 2;
+      margin: 0;
+    }
   }
 
   &__balanceLabel {
@@ -42,6 +100,11 @@
     color: #52555f;
     margin-bottom: 12px;
     text-align: center;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 0;
+      margin-right: 20px;
+    }
   }
 
   &__balanceContainer {
@@ -53,6 +116,13 @@
     width: 100%;
     height: 56px;
     overflow: hidden;
+
+    @media screen and (min-width: 768px) {
+      border: none;
+      gap: 16px;
+      overflow: visible;
+      width: fit-content;
+    }
   }
 
   &__inputWrapper {
@@ -60,6 +130,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media screen and (min-width: 768px) {
+      width: 125px;
+      height: 44px;
+      flex: none;
+      border: 2px solid #ffffff;
+      border-radius: 12px;
+      padding: 0 16px;
+    }
   }
 
   &__balanceInput {
@@ -76,6 +155,12 @@
     &::placeholder {
       color: #000000;
     }
+
+    @media screen and (min-width: 768px) {
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
   }
 
   &__currencySuffix {
@@ -89,9 +174,16 @@
     width: 2px;
     height: 100%;
     background-color: #ffffff;
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
   }
 
   &__balanceButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
     height: 100%;
     border: none;
@@ -107,6 +199,19 @@
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 125px;
+      flex: none;
+      height: 44px;
+      border: 2px solid #ffffff;
+      border-radius: 12px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
     }
   }
 
@@ -124,13 +229,59 @@
       color: #52555f;
       letter-spacing: 1px;
     }
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__transactionsContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 32px 0;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0px 10px 40px rgba(0, 0, 0, 0.05));
+
+    @media (min-width: 768px) {
+      padding: 0 40px;
+      margin-bottom: 40px;
+      min-height: 600px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__bottomSection {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: flex;
+      padding: 0 40px 40px;
+      justify-content: flex-start;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 1280px) {
+      display: none;
+    }
   }
 
   &__bottomNav {
     display: flex;
     width: 100%;
     height: 70px;
-    margin-top: auto;
+    flex-shrink: 0;
+    background-color: #f5f6fb;
+    z-index: 10;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 
   &__navButton {

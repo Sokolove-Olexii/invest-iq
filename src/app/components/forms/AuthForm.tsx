@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import styles from "./AuthForm.module.scss";
+import LogoScrollIcon from "../../../../public/icons/LogoScroll.svg";
+import GoogleIcon from "../../../../public/icons/googleIcon.svg";
 
 export default function AuthForm() {
   const router = useRouter();
@@ -21,7 +23,7 @@ export default function AuthForm() {
         <div className={styles.auth__logoScrollTrack}>
           <Image
             className={styles.auth__logoImage}
-            src="/icons/LogoScroll.svg"
+            src={LogoScrollIcon}
             alt="LogoScroll"
             width={1280}
             height={253}
@@ -29,7 +31,7 @@ export default function AuthForm() {
           />
           <Image
             className={styles.auth__logoImage}
-            src="/icons/LogoScroll.svg"
+            src={LogoScrollIcon}
             alt="LogoScroll"
             width={1280}
             height={253}
@@ -54,12 +56,7 @@ export default function AuthForm() {
             onClick={handleGoogleLogin}
             type="button"
           >
-            <Image
-              src="/icons/googleIcon.svg"
-              width={18}
-              height={18}
-              alt="Google"
-            />
+            <Image src={GoogleIcon} width={18} height={18} alt="Google" />
             Google
           </button>
 

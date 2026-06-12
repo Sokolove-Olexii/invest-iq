@@ -1,11 +1,10 @@
 .overall {
   background-color: #f5f6fa;
-  min-height: 100vh;
-  padding: 32px 20px 0;
+  flex: 1;
+  padding: 32px 20px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: sans-serif;
 }
 
 .label {
@@ -15,22 +14,69 @@
   margin-bottom: 8px;
 }
 
+.topHeader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto 32px auto;
+  }
+}
+
 .topNav {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    width: auto;
+    margin-bottom: 0;
+    flex: 1;
+  }
 }
 
 .backButton {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  gap: 16px;
+  text-decoration: none;
+
+  &__text {
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: flex;
+      color: #52555f;
+      opacity: 70%;
+    }
+  }
 }
 
 .periodWrapper {
   text-align: center;
   margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    flex: 1;
+    align-items: flex-end;
+  }
+}
+
+.periodContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .periodSelector {
@@ -69,23 +115,51 @@
   span {
     font-size: 14px;
   }
+
+  @media (min-width: 768px) {
+    font-weight: 900;
+  }
 }
 
 .balanceWrapper {
   text-align: center;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 0;
+    flex: 1;
+
+    .label {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .balancePill {
-  background-color: #ffffff;
+  background-color: transparent;
   border: 2px solid #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
   border-radius: 30px;
-  padding: 16px 48px;
-  font-size: 18px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  font-size: 14px;
   font-weight: 700;
   color: #000000;
-  display: inline-block;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-weight: 900;
+    font-size: 16px;
+    padding: 0 40px;
+  }
 }
 
 .summaryCard {
@@ -97,6 +171,13 @@
   align-items: center;
   padding: 24px 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+  @media (min-width: 768px) {
+    max-width: 800px;
+    border-radius: 30px;
+    padding: 16px 40px;
+    margin-bottom: 32px;
+  }
 }
 
 .summaryCol {
@@ -105,6 +186,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
 }
 
 .summaryLabel {
@@ -113,6 +200,10 @@
   font-weight: 700;
   margin-bottom: 8px;
   margin-top: 0;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
 }
 
 .divider {
@@ -126,6 +217,11 @@
   font-size: 16px;
   font-weight: 700;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    font-weight: 900;
+  }
 }
 
 .incomeValue {
@@ -133,4 +229,9 @@
   font-size: 16px;
   font-weight: 700;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    font-weight: 900;
+  }
 }

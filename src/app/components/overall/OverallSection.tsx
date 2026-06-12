@@ -6,8 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./OverallSection.module.scss";
 import ExpanseGraph from "./ExpanseGraph";
 import IncomeGraph from "./IncomeGraph";
+import LeftArrow from "../../../../public/icons/LeftArrow.svg";
+import RightArrow from "../../../../public/icons/RightArrow.svg";
 
-export default function OverallSection({ selectedDate }: { selectedDate: Date | null }) {
+export default function OverallSection({
+  selectedDate,
+}: {
+  selectedDate: Date | null;
+}) {
   const [activeTab, setActiveTab] = useState<"expanse" | "income">("expanse");
 
   const direction = activeTab === "income" ? 1 : -1;
@@ -30,8 +36,8 @@ export default function OverallSection({ selectedDate }: { selectedDate: Date | 
   };
 
   return (
-    <div className={styles.section}>
-      <div className={styles.section_header}>
+    <motion.div layout className={styles.section}>
+      <motion.div layout className={styles.section_header}>
         <button
           onClick={() => setActiveTab("expanse")}
           className={`${styles.section_arrow} ${
@@ -39,15 +45,10 @@ export default function OverallSection({ selectedDate }: { selectedDate: Date | 
           }`}
           disabled={activeTab === "expanse"}
         >
-          <Image
-            src="/icons/LeftArrow.svg"
-            alt="Previous"
-            width={7}
-            height={12}
-          />
+          <Image src={LeftArrow} alt="Previous" width={7} height={12} />
         </button>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <motion.h3
             key={activeTab}
             initial={{ opacity: 0, y: -10 }}
@@ -67,35 +68,85 @@ export default function OverallSection({ selectedDate }: { selectedDate: Date | 
           }`}
           disabled={activeTab === "income"}
         >
-          <Image src="/icons/RightArrow.svg" alt="Next" width={7} height={12} />
+          <Image src={RightArrow} alt="Next" width={7} height={12} />
         </button>
-      </div>
+      </motion.div>
 
-      <div
-        className={styles.section_content}
-        style={{ position: "relative", overflow: "hidden", minHeight: "300px" }}
-      >
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={activeTab}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
-            }}
-          >
-            {activeTab === "expanse" ? (
-          <ExpanseGraph selectedDate={selectedDate} />
-        ) : (
-          <IncomeGraph selectedDate={selectedDate} />
-        )}
+      <motion.div layout className={styles.section_content}>
+        <motion.div layout className={styles.section_mobile_layout}>
+          <AnimatePresence mode="popLayout" custom={direction}>
+            <motion.div
+              key={`mobile-${activeTab}`}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+            >
+              {activeTab === "expanse" ? (
+                <ExpanseGraph selectedDate={selectedDate} renderType="mobile" />
+              ) : (
+                <IncomeGraph selectedDate={selectedDate} renderType="mobile" />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        <motion.div layout className={styles.section_tablet_layout}>
+          <motion.div layout className={styles.section_tablet_grid_container}>
+            <AnimatePresence mode="popLayout" custom={direction}>
+              <motion.div
+                key={`grid-${activeTab}`}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 },
+                }}
+              >
+                {activeTab === "expanse" ? (
+                  <ExpanseGraph selectedDate={selectedDate} renderType="grid" />
+                ) : (
+                  <IncomeGraph selectedDate={selectedDate} renderType="grid" />
+                )}
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
+
+          <motion.div layout className={styles.section_tablet_chart_container}>
+            <AnimatePresence mode="popLayout" custom={direction}>
+              <motion.div
+                key={`chart-${activeTab}`}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 },
+                }}
+              >
+                {activeTab === "expanse" ? (
+                  <ExpanseGraph
+                    selectedDate={selectedDate}
+                    renderType="chart"
+                  />
+                ) : (
+                  <IncomeGraph selectedDate={selectedDate} renderType="chart" />
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }
