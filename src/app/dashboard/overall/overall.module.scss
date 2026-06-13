@@ -5,6 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  z-index: 1;
 }
 
 .label {
@@ -18,6 +21,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
+  z-index: 2;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -25,6 +30,10 @@
     align-items: center;
     max-width: 800px;
     margin: 0 auto 32px auto;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 1060px;
   }
 }
 
@@ -171,12 +180,18 @@
   align-items: center;
   padding: 24px 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
 
   @media (min-width: 768px) {
     max-width: 800px;
     border-radius: 30px;
     padding: 16px 40px;
     margin-bottom: 32px;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 1060px;
   }
 }
 
@@ -233,5 +248,20 @@
   @media (min-width: 768px) {
     font-size: 20px;
     font-weight: 900;
+  }
+}
+
+.logoScrollContainer {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 253px;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
   }
 }

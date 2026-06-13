@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useTransactionsStore } from "@/store/useTransactionsStore";
 import { incomeCategories, expanseCategories } from "@/data/categoryData";
-import GraphIcon from "../../../../public/icons/GraphIcon.svg";
+import { GraphIcon } from "@/assets/icons";
 
 export default function useGraphData({
   type,

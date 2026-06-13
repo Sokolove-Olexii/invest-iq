@@ -1,7 +1,7 @@
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Roboto, Montserrat } from "next/font/google";
+import "react-toastify/dist/ReactToastify.css";
 
 const roboto = Roboto({
   weight: ["400", "500", "700", "900"],
@@ -36,6 +36,7 @@ export default function RootLayout({
           draggable
           pauseOnHover
           theme="light"
+          limit={4}
         />
       </body>
     </html>

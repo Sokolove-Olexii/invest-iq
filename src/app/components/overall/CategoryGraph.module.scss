@@ -195,6 +195,10 @@
     margin-bottom: 8px;
     transition: height 0.3s ease;
 
+    @media screen and (min-width: 1280px) {
+      width: 38px;
+    }
+
     &--incomePrimary {
       background-color: #407946;
     }

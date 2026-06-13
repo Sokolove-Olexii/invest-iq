@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import styles from "./OverallSection.module.scss";
-import CategoryGraph from "./CategoryGraph";
-import LeftArrow from "../../../../public/icons/LeftArrow.svg";
-import RightArrow from "../../../../public/icons/RightArrow.svg";
 import useOverallSection from "@/hooks/useOverall/useOverallSection/useOverallSection";
+import CategoryGraph from "./CategoryGraph";
+import { LeftArrow, RightArrow } from "@/assets/icons";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function OverallSection({
   selectedDate,

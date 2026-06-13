@@ -24,6 +24,21 @@
     }
   }
 
+  &__logoScrollContainer {
+    display: none;
+    @media (min-width: 768px) {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 253px;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+  }
+
   &__topSection {
     background-color: #f5f6fb;
     border-bottom-left-radius: 120px;
@@ -110,7 +125,7 @@
   &__balanceInteractiveArea {
     position: relative;
     width: 100%;
-    
+
     @media screen and (min-width: 768px) {
       width: fit-content;
     }

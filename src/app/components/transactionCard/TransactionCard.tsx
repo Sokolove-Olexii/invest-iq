@@ -1,10 +1,11 @@
 "use client";
+
 import styles from "./TransactionCard.module.scss";
-import Image from "next/image";
-import DeleteIcon from "../../../../public/icons/TrashIcon.svg";
+import { TrashIcon as DeleteIcon } from "@/assets/icons";
 import useTransactionCard, {
   TransactionCardProps,
 } from "@/hooks/useTransactionCard/useTransactionCard";
+import Image from "next/image";
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
   const { CategoryLabel, formatedData, isExpanse, handleDelete } =

@@ -1,0 +1,12 @@
+export { default as LeftArrow } from "../../../public/icons/ui/LeftArrow.svg";
+export { default as RightArrow } from "../../../public/icons/ui/RightArrow.svg";
+export { default as CloseIcon } from "../../../public/icons/ui/closeIcon.svg";
+export { default as ArrowIcon } from "../../../public/icons/ui/ArrowIcon.svg";
+export { default as BackIcon } from "../../../public/icons/ui/BackIcon.svg";
+export { default as LogOutIcon } from "../../../public/icons/ui/LogOutIcon.svg";
+export { default as GraphIcon } from "../../../public/icons/ui/GraphIcon.svg";
+export { default as CalcIcon } from "../../../public/icons/ui/CalcIcon.svg";
+export { default as CalendarIcon } from "../../../public/icons/ui/CalendarIcon.svg";
+export { default as TrashIcon } from "../../../public/icons/ui/TrashIcon.svg";
+export { default as GoogleIcon } from "../../../public/icons/illustrations/googleIcon.svg";
+export { default as LogoScrollIcon } from "../../../public/icons/illustrations/LogoScroll.svg";

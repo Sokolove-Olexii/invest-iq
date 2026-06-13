@@ -1,15 +1,16 @@
 "use client";
 
 import styles from "./dashboard.module.scss";
-import { ThreeDots } from "react-loader-spinner";
 import useDashboard from "../../hooks/useDashboard/useDashboard";
-import Link from "next/link";
-import Image from "next/image";
+import { GraphIcon } from "@/assets/icons";
+import { ThreeDots } from "react-loader-spinner";
 import Calendar from "@/app/components/calendar/Calendar";
-import GraphIcon from "../../../public/icons/GraphIcon.svg";
 import TransactionBoard from "@/app/components/transactionBoard/TransactionBoard";
 import SummaryBoard from "../components/summaryBoard/summaryBoard";
 import FaqModal from "../components/modals/faqModal/faqModal";
+import LogoScroll from "@/app/components/ui/LogoScroll/LogoScroll";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function DashboardPage() {
   const {
@@ -23,6 +24,10 @@ export default function DashboardPage() {
 
   return (
     <section className={styles.dashboard}>
+      <div className={styles.dashboard__logoScrollContainer}>
+        <LogoScroll />
+      </div>
+
       <div className={styles.dashboard__topSection}>
         <Link
           href="/dashboard/overall"

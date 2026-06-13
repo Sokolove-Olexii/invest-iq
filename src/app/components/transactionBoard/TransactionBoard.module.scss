@@ -353,7 +353,7 @@
       display: grid;
       grid-template-columns: 100px 2fr 1.5fr 1fr 40px;
       gap: 16px;
-      padding: 16px 12px;
+      padding: 16px 20px;
       border-bottom: none;
       background-color: transparent;
       margin-bottom: 0;
@@ -364,12 +364,17 @@
         color: #000000;
         text-transform: uppercase;
         letter-spacing: 1px;
+        text-align: center;
+
+        &:first-child {
+          text-align: center;
+        }
       }
     }
   }
 
   &__tableHeaderAmount {
-    text-align: right;
+    text-align: right !important;
   }
 
   &__transactionsListMobile {
@@ -397,6 +402,7 @@
       border-radius: 12px;
       overflow-x: hidden;
       transform: translateZ(0);
+      position: relative;
 
       &::-webkit-scrollbar {
         width: 6px;
@@ -426,5 +432,6 @@
     text-align: center;
     color: #52555f;
     margin-top: 20px;
+    width: 100%;
   }
 }

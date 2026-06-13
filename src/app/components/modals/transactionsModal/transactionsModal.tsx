@@ -1,7 +1,7 @@
+import styles from "./transactionsModal.module.scss";
+import { CloseIcon } from "@/assets/icons";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import Image from "next/image";
-import styles from "./transactionsModal.module.scss";
-import CloseIcon from "../../../../../public/icons/closeIcon.svg";
 
 interface QuitModalProps {
   isOpen: boolean;

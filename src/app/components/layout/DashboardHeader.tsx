@@ -1,12 +1,12 @@
 "use client";
 
-import Logo from "../ui/Logo";
 import styles from "./DashboardHeader.module.scss";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import Logo from "../ui/Logo";
 import QuitModal from "../modals/quitModal/quitModal";
-import LogOutIcon from "../../../../public/icons/LogOutIcon.svg";
+import { LogOutIcon } from "@/assets/icons";
 import useDashboardHeader from "@/hooks/useDashboardHeader/useDashboardHeader";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function DashboardHeader() {
   const {

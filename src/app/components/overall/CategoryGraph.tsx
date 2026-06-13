@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { LinearProgress } from "@mui/material";
 import styles from "./CategoryGraph.module.scss";
 import useGraphData from "@/hooks/useOverall/useGraphData/useGraphData";
 import { formatMoney } from "@/utils/formatMoney";
+import { LinearProgress } from "@mui/material";
+import Image from "next/image";
 
 export default function CategoryGraph({
   type,

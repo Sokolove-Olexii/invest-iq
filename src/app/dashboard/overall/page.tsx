@@ -1,13 +1,13 @@
 "use client";
 
-import useOverallSection from "../../../hooks/useOverall/useOverallPage/useOverallPage";
 import styles from "./overall.module.scss";
+import useOverallSection from "../../../hooks/useOverall/useOverallPage/useOverallPage";
+import OverallSection from "@/app/components/overall/OverallSection";
+import { BackIcon, LeftArrow, RightArrow } from "@/assets/icons";
+import LogoScroll from "@/app/components/ui/LogoScroll/LogoScroll";
 import Image from "next/image";
 import Link from "next/link";
-import OverallSection from "@/app/components/overall/OverallSection";
-import BackIcon from "../../../../public/icons/BackIcon.svg";
-import LeftArrow from "../../../../public/icons/LeftArrow.svg";
-import RightArrow from "../../../../public/icons/RightArrow.svg";
+import MONTH_NAMES from "@/data/monthNamesData";
 
 export default function Overall() {
   const {
@@ -22,6 +22,10 @@ export default function Overall() {
 
   return (
     <section className={styles.overall}>
+      <div className={styles.logoScrollContainer}>
+        <LogoScroll />
+      </div>
+
       <div className={styles.topHeader}>
         <div className={styles.topNav}>
           <Link href="/dashboard" className={styles.backButton}>
@@ -49,22 +53,7 @@ export default function Overall() {
                 <Image src={LeftArrow} alt="Prev" width={7} height={12} />
               </button>
               <h2 className={styles.periodText}>
-                {date
-                  ? [
-                      "СІЧЕНЬ",
-                      "ЛЮТИЙ",
-                      "БЕРЕЗЕНЬ",
-                      "КВІТЕНЬ",
-                      "ТРАВЕНЬ",
-                      "ЧЕРВЕНЬ",
-                      "ЛИПЕНЬ",
-                      "СЕРПЕНЬ",
-                      "ВЕРЕСЕНЬ",
-                      "ЖОВТЕНЬ",
-                      "ЛИСТОПАД",
-                      "ГРУДЕНЬ",
-                    ][date.getMonth()]
-                  : ""}
+                {date ? MONTH_NAMES[date.getMonth()] : ""}
                 <br />
                 <span>{date ? date.getFullYear() : ""}</span>
               </h2>

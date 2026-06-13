@@ -1,15 +1,16 @@
 "use client";
+
 import styles from "./TransactionBoard.module.scss";
 import Calendar from "@/app/components/calendar/Calendar";
+import useTransactionBoard from "@/hooks/useTransactionBoard/useTransactionBoard";
 import TransactionCard from "../transactionCard/TransactionCard";
-import Image from "next/image";
-import ArrowIcon from "../../../../public/icons/ArrowIcon.svg";
-import CalcIcon from "../../../../public/icons/CalcIcon.svg";
+import { ArrowIcon, CalcIcon } from "@/assets/icons";
 import TransactionsModal from "../modals/transactionsModal/transactionsModal";
 import SummaryBoard from "../summaryBoard/summaryBoard";
 import { ThreeDots } from "react-loader-spinner";
 import { motion, AnimatePresence } from "framer-motion";
-import useTransactionBoard from "@/hooks/useTransactionBoard/useTransactionBoard";
+import Image from "next/image";
+import { TABS } from "@/data/tabsData";
 
 export default function TransactionBoard() {
   const {
@@ -42,24 +43,18 @@ export default function TransactionBoard() {
       <h3 className={styles.board__mobileTitle}>Останні транзакції</h3>
 
       <div className={styles.board__tabs}>
-        <button
-          className={`${styles.board__tab} ${activeTab === "expanse" ? styles["board__tab--active"] : ""}`}
-          onClick={() => {
-            setActiveTab("expanse");
-            setCategory("");
-          }}
-        >
-          ВИТРАТИ
-        </button>
-        <button
-          className={`${styles.board__tab} ${activeTab === "income" ? styles["board__tab--active"] : ""}`}
-          onClick={() => {
-            setActiveTab("income");
-            setCategory("");
-          }}
-        >
-          ДОХІД
-        </button>
+        {TABS.map((tab) => (
+          <button
+            key={tab.id}
+            className={`${styles.board__tab} ${activeTab === tab.id ? styles["board__tab--active"] : ""}`}
+            onClick={() => {
+              setActiveTab(tab.id);
+              setCategory("");
+            }}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
       <div

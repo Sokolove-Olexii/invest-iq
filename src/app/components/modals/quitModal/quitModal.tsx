@@ -1,8 +1,8 @@
+import styles from "./quitModal.module.scss";
+import { CloseIcon } from "@/assets/icons";
+import { ThreeDots } from "react-loader-spinner";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import Image from "next/image";
-import styles from "./quitModal.module.scss";
-import CloseIcon from "../../../../../public/icons/closeIcon.svg";
-import { ThreeDots } from "react-loader-spinner";
 
 interface QuitModalProps {
   isOpen: boolean;

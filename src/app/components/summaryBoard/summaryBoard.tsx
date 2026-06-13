@@ -1,10 +1,14 @@
 "use client";
 
 import styles from "./summaryBoard.module.scss";
-import { motion, AnimatePresence } from "framer-motion";
 import useSummaryBoard from "@/hooks/useSummaryBoard/useSummaryBord";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function SummaryBoard({ activeTab }: { activeTab?: "expanse" | "income" }) {
+export default function SummaryBoard({
+  activeTab,
+}: {
+  activeTab?: "expanse" | "income";
+}) {
   const { summaryData } = useSummaryBoard({ activeTab });
 
   return (

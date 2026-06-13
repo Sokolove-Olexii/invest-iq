@@ -93,6 +93,7 @@
       order: 1;
       font-size: 14px;
       color: #52555f;
+      text-align: center;
     }
 
     &__description {
@@ -100,13 +101,14 @@
       font-size: 14px;
       color: #52555f;
       font-weight: 700;
+      text-align: center;
     }
 
     &__category {
       order: 3;
       font-size: 14px;
       color: #52555f;
-      text-align: left;
+      text-align: center;
     }
 
     &__amount {

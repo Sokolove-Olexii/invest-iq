@@ -43,16 +43,7 @@
     }
   }
 
-  &__logoScrollTrack {
-    display: flex;
-    width: max-content;
-    animation: scrollBg 20s linear infinite;
-  }
 
-  &__logoImage {
-    display: block;
-    object-fit: fit;
-  }
 
   &__header {
     position: relative;
@@ -305,11 +296,4 @@
   }
 }
 
-@keyframes scrollBg {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+

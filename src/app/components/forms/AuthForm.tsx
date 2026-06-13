@@ -1,14 +1,15 @@
 "use client";
-import { useState } from "react";
-import supabase from "@/lib/supabase";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+
 import styles from "./AuthForm.module.scss";
-import LogoScrollIcon from "../../../../public/icons/LogoScroll.svg";
-import GoogleIcon from "../../../../public/icons/googleIcon.svg";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import supabase from "@/lib/supabase";
+import { LogoScrollIcon, GoogleIcon } from "@/assets/icons";
+import LogoScroll from "@/app/components/ui/LogoScroll/LogoScroll";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { toast } from "react-toastify";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function AuthForm() {
   const router = useRouter();
@@ -23,24 +24,7 @@ export default function AuthForm() {
   return (
     <section className={styles.auth}>
       <div className={styles.auth__logoScrollContainer}>
-        <div className={styles.auth__logoScrollTrack}>
-          <Image
-            className={styles.auth__logoImage}
-            src={LogoScrollIcon}
-            alt="LogoScroll"
-            width={1280}
-            height={253}
-            priority
-          />
-          <Image
-            className={styles.auth__logoImage}
-            src={LogoScrollIcon}
-            alt="LogoScroll"
-            width={1280}
-            height={253}
-            priority
-          />
-        </div>
+        <LogoScroll />
       </div>
 
       <div className={styles.auth__position}>

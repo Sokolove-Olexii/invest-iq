@@ -1,7 +1,7 @@
+import styles from "./faqModal.module.scss";
+import { CloseIcon } from "@/assets/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import styles from "./faqModal.module.scss";
-import CloseIcon from "../../../../../public/icons/closeIcon.svg";
 
 interface faqModalProps {
   isOpen: boolean;

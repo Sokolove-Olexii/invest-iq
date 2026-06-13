@@ -1,25 +1,21 @@
-import { useState, useRef, useEffect } from "react";
-import { expanseCategories, incomeCategories } from "@/data/categoryData";
-import { useTransactionsStore } from "@/store/useTransactionsStore";
 import { useBalanceStore } from "@/store/useBalanceStore";
+import { useTransactionsStore } from "@/store/useTransactionsStore";
+import { useState, useRef, useEffect } from "react";
+import { incomeCategories, expanseCategories } from "@/data/categoryData";
 import { toast } from "react-toastify";
 
-export default function useTransactionBoard() {
-  const [activeTab, setActiveTab] = useState<"expanse" | "income">("expanse");
+export default function useTransactionForm(type: "income" | "expanse") {
   const { balance, updateBalance } = useBalanceStore();
-  const { transactions, addTransaction, isLoading } = useTransactionsStore();
+  const { addTransaction, isLoading } = useTransactionsStore();
 
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState<Date | null>(new Date());
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const currentCategories =
-    activeTab === "income" ? incomeCategories : expanseCategories;
-
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -34,9 +30,8 @@ export default function useTransactionBoard() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const selectedCategoryLabel = currentCategories.find(
-    (c) => c.id === category,
-  )?.label;
+  const categories = type === "income" ? incomeCategories : expanseCategories;
+  const selectedCategoryLabel = categories.find((c) => c.id === category)?.label;
 
   const handleSubmit = async () => {
     if (!description || !category || !amount) {
@@ -44,8 +39,8 @@ export default function useTransactionBoard() {
       return;
     }
 
-    const parsedAmount = parseFloat(amount);
-    if (isNaN(parsedAmount) || parsedAmount <= 0) {
+    const numericAmount = parseFloat(amount);
+    if (isNaN(numericAmount) || numericAmount <= 0) {
       toast.warning("Сума повинна бути більшою за нуль.");
       return;
     }
@@ -53,13 +48,13 @@ export default function useTransactionBoard() {
     await addTransaction({
       description,
       category,
-      amount: parsedAmount,
-      type: activeTab,
+      amount: numericAmount,
+      type,
       ...(date ? { created_at: date.toISOString() } : {}),
     });
 
     const newBalance =
-      activeTab === "income" ? balance + parsedAmount : balance - parsedAmount;
+      type === "income" ? balance + numericAmount : balance - numericAmount;
     await updateBalance(newBalance);
 
     setDescription("");
@@ -75,30 +70,24 @@ export default function useTransactionBoard() {
     setDate(new Date());
   };
 
-  const filteredTransactions = transactions.filter((t) => t.type === activeTab);
-
   return {
-    activeTab,
-    setActiveTab,
-    setCategory,
+    categories,
     date,
     setDate,
     description,
     setDescription,
     dropdownRef,
     setIsOpen,
+    isOpen,
     category,
+    setCategory,
     selectedCategoryLabel,
-    currentCategories,
     amount,
     setAmount,
     handleSubmit,
-    setIsTransactionModalOpen,
-    transactions,
-    filteredTransactions,
-    isTransactionModalOpen,
     handleClear,
-    isOpen,
     isLoading,
+    setIsTransactionModalOpen,
+    isTransactionModalOpen,
   };
 }

@@ -1,16 +1,16 @@
-import ProductsIcon from "../../public/icons/ProductsIcon.svg";
-import DrinksIcon from "../../public/icons/DrinksIcon.svg";
-import EntertaimentIcon from "../../public/icons/EntertaimentIcon.svg";
-import HealthIcon from "../../public/icons/HealthIcon.svg";
-import TransportIcon from "../../public/icons/TransportIcon.svg";
-import AllForHomeIcon from "../../public/icons/AllForHomeIcon.svg";
-import ToolsIcon from "../../public/icons/ToolsIcon.svg";
-import ServicesIcon from "../../public/icons/ServicesIcon.svg";
-import HobbyIcon from "../../public/icons/HobbyIcon.svg";
-import BookIcon from "../../public/icons/BookIcon.svg";
-import OtherIcon from "../../public/icons/OtherIcon.svg";
-import SalaryIncomeIcon from "../../public/icons/SalaryIncome.svg";
-import AdditionalIncomeIcon from "../../public/icons/additionalIncome.svg";
+import ProductsIcon from "../../public/icons/categories/ProductsIcon.svg";
+import DrinksIcon from "../../public/icons/categories/DrinksIcon.svg";
+import EntertaimentIcon from "../../public/icons/categories/EntertaimentIcon.svg";
+import HealthIcon from "../../public/icons/categories/HealthIcon.svg";
+import TransportIcon from "../../public/icons/categories/TransportIcon.svg";
+import AllForHomeIcon from "../../public/icons/categories/AllForHomeIcon.svg";
+import ToolsIcon from "../../public/icons/categories/ToolsIcon.svg";
+import ServicesIcon from "../../public/icons/categories/ServicesIcon.svg";
+import HobbyIcon from "../../public/icons/categories/HobbyIcon.svg";
+import BookIcon from "../../public/icons/categories/BookIcon.svg";
+import OtherIcon from "../../public/icons/categories/OtherIcon.svg";
+import SalaryIncomeIcon from "../../public/icons/categories/SalaryIncome.svg";
+import AdditionalIncomeIcon from "../../public/icons/categories/additionalIncome.svg";
 
 export const expanseCategories = [
   { id: "food", label: "Продукти", icon: ProductsIcon, width: 63, height: 56 },
