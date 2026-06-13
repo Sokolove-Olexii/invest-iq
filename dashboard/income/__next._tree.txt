@@ -1,9 +1,9 @@
 :HL["/invest-iq/_next/static/chunks/0zv5ry3ls.g9m.css","style"]
-:HL["/invest-iq/_next/static/chunks/0nangm62b223f.css","style"]
+:HL["/invest-iq/_next/static/chunks/0laea72~~83z2.css","style"]
 :HL["/invest-iq/_next/static/media/44fac91e6f2d2b1b-s.p.0f~sf101j6mzi.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/invest-iq/_next/static/media/62d4b50592542c9f-s.p.0id408x23fv8q.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/invest-iq/_next/static/media/ce62453a442c7f35-s.p.0333ktddfbsxy.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/invest-iq/_next/static/media/e8f2fbee2754df70-s.p.0fzkl03jw-sdz.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/invest-iq/_next/static/chunks/0051brn7i4k9s.css","style"]
-:HL["/invest-iq/_next/static/chunks/01fo772ov3h9q.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"dashboard","param":null,"prefetchHints":0,"slots":{"children":{"name":"income","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"0UY-o8h5qIOsj6BJDpXxG"}
+:HL["/invest-iq/_next/static/chunks/0di8vbc_6aer3.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"dashboard","param":null,"prefetchHints":0,"slots":{"children":{"name":"income","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"qr1zQf-dVSNzrEDVEc1nW"}
