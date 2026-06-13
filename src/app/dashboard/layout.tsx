@@ -1,5 +1,6 @@
 import DashboardHeader from "@/app/components/layout/DashboardHeader";
 import styles from "./layout.module.scss";
+import AuthGuard from "@/app/components/auth/AuthGuard";
 
 export default function DashboardLayout({
   children,
@@ -7,12 +8,14 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={styles.layout__wrapper}>
-      <DashboardHeader />
+    <AuthGuard>
+      <div className={styles.layout__wrapper}>
+        <DashboardHeader />
 
-      <main className={styles.layout__main}>
-        {children}
-      </main>
-    </div>
+        <main className={styles.layout__main}>
+          {children}
+        </main>
+      </div>
+    </AuthGuard>
   );
 }

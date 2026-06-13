@@ -1,0 +1,70 @@
+.positionWrapper {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  transform: none;
+  margin-top: 14px;
+  z-index: 1001;
+}
+
+.modal {
+  position: relative;
+  width: 280px;
+  background: linear-gradient(117.84deg, #1d3461 2.84%, #031534 67.28%);
+  background-color: #0d1b2a;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  outline: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 48px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #1a2f58;
+  }
+
+  &__mainText {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 0;
+    padding-right: 20px;
+  }
+
+  &__closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    filter: brightness(0) invert(1);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &__subText {
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+}

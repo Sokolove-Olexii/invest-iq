@@ -1,11 +1,8 @@
 "use client";
-import { useBalanceStore } from "@/store/useBalanceStore";
-import { useTransactionsStore } from "@/store/useTransactionsStore";
 import styles from "./expanses.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Calendar from "@/app/components/calendar/Calendar";
-import { useState, useRef, useEffect } from "react";
 import { expanseCategories } from "@/data/categoryData";
 import BackIcon from "../../../../public/icons/BackIcon.svg";
 import ArrowIcon from "../../../../public/icons/ArrowIcon.svg";
@@ -13,65 +10,28 @@ import CalcIcon from "../../../../public/icons/CalcIcon.svg";
 import TransactionsModal from "../../components/modals/transactionsModal/transactionsModal";
 import { ThreeDots } from "react-loader-spinner";
 import { motion, AnimatePresence } from "framer-motion";
+import useExpanses from "@/hooks/useExpanses/useExpanses";
 
 export default function Expanses() {
-  const { balance, updateBalance } = useBalanceStore();
-  const { addTransaction, isLoading } = useTransactionsStore();
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [amount, setAmount] = useState("");
-  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
-  const [date, setDate] = useState<Date | null>(new Date());
-
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const selectedCategoryLabel = expanseCategories.find(
-    (c) => c.id === category,
-  )?.label;
-
-  const handleSubmit = async () => {
-    if (!description || !category || !amount) return;
-
-    const expanseAmount = parseFloat(amount);
-    if (isNaN(expanseAmount) || expanseAmount <= 0) return;
-
-    await addTransaction({
-      description,
-      category,
-      amount: expanseAmount,
-      type: "expanse",
-      ...(date ? { created_at: date.toISOString() } : {}),
-    });
-
-    const newBalance = balance - expanseAmount;
-    await updateBalance(newBalance);
-
-    setDescription("");
-    setCategory("");
-    setAmount("");
-    setDate(new Date());
-  };
-
-  const handleClear = async () => {
-    setDescription("");
-    setCategory("");
-    setAmount("");
-    setDate(new Date());
-  };
+  const {
+    date,
+    setDate,
+    description,
+    setDescription,
+    dropdownRef,
+    setIsOpen,
+    category,
+    selectedCategoryLabel,
+    isOpen,
+    amount,
+    setAmount,
+    handleSubmit,
+    handleClear,
+    setCategory,
+    isLoading,
+    setIsTransactionModalOpen,
+    isTransactionModalOpen,
+  } = useExpanses();
 
   return (
     <section className={styles.expanses}>

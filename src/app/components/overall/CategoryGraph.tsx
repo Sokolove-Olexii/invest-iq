@@ -1,70 +1,23 @@
-"use client";
-
-import { useTransactionsStore } from "@/store/useTransactionsStore";
-import { expanseCategories } from "@/data/categoryData";
 import Image from "next/image";
 import { LinearProgress } from "@mui/material";
-import GraphIcon from "../../../../public/icons/GraphIcon.svg";
-import styles from "./IncomeGraph.module.scss";
-import { useMemo } from "react";
+import styles from "./CategoryGraph.module.scss";
+import useGraphData from "@/hooks/useOverall/useGraphData/useGraphData";
+import { formatMoney } from "@/utils/formatMoney";
 
-const formatMoney = (amount: number) => {
-  return amount
-    .toLocaleString("uk-UA", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })
-    .replace(",", ".");
-};
-
-export default function IncomeGraph({
+export default function CategoryGraph({
+  type,
   selectedDate,
   renderType = "all",
 }: {
+  type: "income" | "expanse";
   selectedDate?: Date | null;
   renderType?: "all" | "mobile" | "grid" | "chart";
 }) {
-  const transactions = useTransactionsStore((state) => state.transactions);
-
-  const categoryTotals = useMemo(() => {
-    const totals = transactions
-      .filter((t) => {
-        if (t.type !== "income") return false;
-        if (!selectedDate || !t.created_at) return true;
-        const tDate = new Date(t.created_at);
-        return (
-          tDate.getMonth() === selectedDate.getMonth() &&
-          tDate.getFullYear() === selectedDate.getFullYear()
-        );
-      })
-      .reduce(
-        (acc, t) => {
-          acc[t.category] = (acc[t.category] || 0) + t.amount;
-          return acc;
-        },
-        {} as Record<string, number>,
-      );
-
-    return Object.entries(totals)
-      .map(([id, total]) => {
-        const cat = expanseCategories.find((c) => c.id === id);
-        return {
-          id,
-          label: cat?.label || id,
-          icon: cat?.icon || GraphIcon,
-          iconWidth: cat?.width || 50,
-          iconHeight: cat?.height || 50,
-          total,
-        };
-      })
-      .sort((a, b) => b.total - a.total);
-  }, [transactions]);
+  const { categoryTotals, maxTotal } = useGraphData({ type, selectedDate });
 
   if (!categoryTotals.length) {
     return <div className={styles.graph_empty}>Немає даних</div>;
   }
-
-  const maxTotal = categoryTotals[0].total;
 
   const gridContent = (
     <div className={styles.graph_grid}>
@@ -72,12 +25,21 @@ export default function IncomeGraph({
         <div key={item.id} className={styles.graph_card}>
           <p className={styles.graph_amount}>{formatMoney(item.total)}</p>
           <div className={styles.graph_icon}>
-            <div className={styles.graph_circle}>
+            <div
+              className={`${styles.graph_circle} ${
+                type === "income"
+                  ? styles["graph_circle--income"]
+                  : styles["graph_circle--expanse"]
+              }`}
+            >
               <Image
                 src={item.icon}
                 alt={item.label}
                 width={item.iconWidth}
                 height={item.iconHeight}
+                className={
+                  type === "expanse" ? styles["graph_image--expanse"] : ""
+                }
               />
             </div>
           </div>
@@ -99,13 +61,20 @@ export default function IncomeGraph({
           </div>
           <LinearProgress
             variant="determinate"
-            value={(item.total / maxTotal) * 100}
+            value={maxTotal > 0 ? (item.total / maxTotal) * 100 : 0}
             sx={{
-              height: 10,
+              height: type === "income" ? 10 : 15,
               borderRadius: "0 8px 8px 0",
-              backgroundColor: "#f5f6fb",
+              backgroundColor: type === "income" ? "#f5f6fb" : "transparent",
               "& .MuiLinearProgress-bar": {
-                backgroundColor: index % 3 === 0 ? "#407946" : "#b3d5b7",
+                backgroundColor:
+                  type === "income"
+                    ? index % 3 === 0
+                      ? "#407946"
+                      : "#b3d5b7"
+                    : index % 3 === 0
+                      ? "#fb7c2f"
+                      : "#fcd6bb",
                 borderRadius: "0 8px 8px 0",
               },
             }}
@@ -124,10 +93,17 @@ export default function IncomeGraph({
       </div>
       <div className={styles.graph_chartBars}>
         {categoryTotals.map((item, index) => {
-          const isGreen = index % 3 === 0;
-          const fillClass = isGreen
-            ? styles["graph_chartBarFill--green"]
-            : styles["graph_chartBarFill--lightGreen"];
+          const isPrimary = index % 3 === 0;
+          let fillClass = "";
+          if (type === "income") {
+            fillClass = isPrimary
+              ? styles["graph_chartBarFill--incomePrimary"]
+              : styles["graph_chartBarFill--incomeSecondary"];
+          } else {
+            fillClass = isPrimary
+              ? styles["graph_chartBarFill--expansePrimary"]
+              : styles["graph_chartBarFill--expanseSecondary"];
+          }
 
           const heightPercent =
             maxTotal > 0 ? (item.total / maxTotal) * 100 : 0;

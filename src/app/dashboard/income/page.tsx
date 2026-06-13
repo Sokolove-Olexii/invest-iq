@@ -1,11 +1,8 @@
 "use client";
-import { useBalanceStore } from "@/store/useBalanceStore";
-import { useTransactionsStore } from "@/store/useTransactionsStore";
 import styles from "./income.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Calendar from "@/app/components/calendar/Calendar";
-import { useState, useRef, useEffect } from "react";
 import { incomeCategories } from "@/data/categoryData";
 import BackIcon from "../../../../public/icons/BackIcon.svg";
 import ArrowIcon from "../../../../public/icons/ArrowIcon.svg";
@@ -13,66 +10,28 @@ import CalcIcon from "../../../../public/icons/CalcIcon.svg";
 import TransactionsModal from "../../components/modals/transactionsModal/transactionsModal";
 import { ThreeDots } from "react-loader-spinner";
 import { motion, AnimatePresence } from "framer-motion";
+import useIncome from "@/hooks/useIncome/useIncome";
 
 export default function Expanses() {
-  const { balance, updateBalance } = useBalanceStore();
-  const { addTransaction, isLoading } = useTransactionsStore();
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState<Date | null>(new Date());
-
-  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const selectedCategoryLabel = incomeCategories.find(
-    (c) => c.id === category,
-  )?.label;
-
-  const handleSubmit = async () => {
-    if (!description || !category || !amount) return;
-
-    const expanseAmount = parseFloat(amount);
-    if (isNaN(expanseAmount) || expanseAmount <= 0) return;
-
-    await addTransaction({
-      description,
-      category,
-      amount: expanseAmount,
-      type: "income",
-      ...(date ? { created_at: date.toISOString() } : {}),
-    });
-
-    const newBalance = balance + expanseAmount;
-    await updateBalance(newBalance);
-
-    setDescription("");
-    setCategory("");
-    setAmount("");
-    setDate(new Date());
-  };
-
-  const handleClear = () => {
-    setDescription("");
-    setCategory("");
-    setAmount("");
-    setDate(new Date());
-  };
+  const {
+    isLoading,
+    isOpen,
+    isTransactionModalOpen,
+    setIsTransactionModalOpen,
+    selectedCategoryLabel,
+    handleSubmit,
+    handleClear,
+    description,
+    setDescription,
+    dropdownRef,
+    category,
+    setIsOpen,
+    setCategory,
+    amount,
+    setAmount,
+    date,
+    setDate,
+  } = useIncome();
 
   return (
     <section className={styles.expanses}>
@@ -116,7 +75,7 @@ export default function Expanses() {
               <AnimatePresence>
                 {isOpen && (
                   <motion.ul
-                    className={styles.income__optionsList}
+                    className={styles.expanses__optionsList}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
@@ -125,7 +84,7 @@ export default function Expanses() {
                     {incomeCategories.map((cat) => (
                       <li
                         key={cat.id}
-                        className={`${styles.income__optionItem} ${category === cat.id ? styles["income__optionItem--active"] : ""}`}
+                        className={`${styles.expanses__optionItem} ${category === cat.id ? styles["expanses__optionItem--active"] : ""}`}
                         onClick={() => {
                           setCategory(cat.id);
                           setIsOpen(false);

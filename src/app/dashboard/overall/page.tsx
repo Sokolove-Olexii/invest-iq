@@ -1,71 +1,24 @@
 "use client";
 
+import useOverallSection from "../../../hooks/useOverall/useOverallPage/useOverallPage";
 import styles from "./overall.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { useBalanceStore } from "@/store/useBalanceStore";
-import { useTransactionsStore } from "@/store/useTransactionsStore";
-import { useEffect, useState } from "react";
 import OverallSection from "@/app/components/overall/OverallSection";
 import BackIcon from "../../../../public/icons/BackIcon.svg";
 import LeftArrow from "../../../../public/icons/LeftArrow.svg";
 import RightArrow from "../../../../public/icons/RightArrow.svg";
 
-const formatMoney = (amount: number | string) => {
-  const num = Number(amount) || 0;
-  return num
-    .toLocaleString("uk-UA", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })
-    .replace(",", ".");
-};
-
 export default function Overall() {
-  const { balance, fetchBalance } = useBalanceStore();
-  const { fetchTransactions } = useTransactionsStore();
-
-  const [date, setDate] = useState<Date | null>(new Date());
-
-  useEffect(() => {
-    fetchBalance();
-    fetchTransactions();
-  }, [fetchBalance, fetchTransactions]);
-
-  const handlePrevMonth = () => {
-    setDate((prev) => {
-      if (!prev) return new Date();
-      return new Date(prev.getFullYear(), prev.getMonth() - 1, 1);
-    });
-    fetchTransactions();
-  };
-
-  const handleNextMonth = () => {
-    setDate((prev) => {
-      if (!prev) return new Date();
-      return new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
-    });
-    fetchTransactions();
-  };
-
-  const transactions = useTransactionsStore((state) => state.transactions);
-
-  const filteredTransactions = transactions.filter((t) => {
-    if (!date || !t.created_at) return true;
-    const tDate = new Date(t.created_at);
-    return (
-      tDate.getMonth() === date.getMonth() &&
-      tDate.getFullYear() === date.getFullYear()
-    );
-  });
-
-  const totalIncome = filteredTransactions
-    .filter((t) => t.type === "income")
-    .reduce((sum, t) => sum + t.amount, 0);
-
-  const totalExpanse = filteredTransactions
-    .filter((t) => t.type === "expanse")
-    .reduce((sum, t) => sum + t.amount, 0);
+  const {
+    formatMoney,
+    handleNextMonth,
+    handlePrevMonth,
+    date,
+    totalExpanse,
+    totalIncome,
+    balance,
+  } = useOverallSection();
 
   return (
     <section className={styles.overall}>

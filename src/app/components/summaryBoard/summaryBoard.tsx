@@ -1,63 +1,11 @@
 "use client";
 
 import styles from "./summaryBoard.module.scss";
-import { useTransactionsStore } from "@/store/useTransactionsStore";
 import { motion, AnimatePresence } from "framer-motion";
+import useSummaryBoard from "@/hooks/useSummaryBoard/useSummaryBord";
 
-const MONTH_NAMES = [
-  "СІЧЕНЬ",
-  "ЛЮТИЙ",
-  "БЕРЕЗЕНЬ",
-  "КВІТЕНЬ",
-  "ТРАВЕНЬ",
-  "ЧЕРВЕНЬ",
-  "ЛИПЕНЬ",
-  "СЕРПЕНЬ",
-  "ВЕРЕСЕНЬ",
-  "ЖОВТЕНЬ",
-  "ЛИСТОПАД",
-  "ГРУДЕНЬ",
-];
-
-export default function SummaryBoard({
-  activeTab = "expanse",
-}: {
-  activeTab?: "expanse" | "income";
-}) {
-  const { transactions } = useTransactionsStore();
-
-  const summaryData = (() => {
-    const filtered = transactions.filter((t) => t.type === activeTab);
-    const grouped = filtered.reduce(
-      (acc, curr) => {
-        const date = new Date(curr.created_at || new Date());
-        const year = date.getFullYear();
-        const monthIndex = date.getMonth();
-        const key = `${year}-${monthIndex}`;
-
-        if (!acc[key]) {
-          acc[key] = {
-            id: key,
-            monthLabel: MONTH_NAMES[monthIndex],
-            total: 0,
-            timestamp: date.getTime(),
-          };
-        }
-
-        acc[key].total += curr.amount;
-
-        return acc;
-      },
-      {} as Record<
-        string,
-        { id: string; monthLabel: string; total: number; timestamp: number }
-      >,
-    );
-
-    return Object.values(grouped)
-      .sort((a, b) => b.timestamp - a.timestamp)
-      .slice(0, 6);
-  })();
+export default function SummaryBoard({ activeTab }: { activeTab?: "expanse" | "income" }) {
+  const { summaryData } = useSummaryBoard({ activeTab });
 
   return (
     <div className={styles.summaryBoard}>
@@ -69,9 +17,24 @@ export default function SummaryBoard({
               <motion.li
                 key={item.id}
                 className={styles.summaryBoard__item}
-                initial={{ opacity: 0, height: 0, paddingBottom: 0, paddingTop: 0 }}
-                animate={{ opacity: 1, height: "auto", paddingBottom: 16, paddingTop: 16 }}
-                exit={{ opacity: 0, height: 0, paddingBottom: 0, paddingTop: 0 }}
+                initial={{
+                  opacity: 0,
+                  height: 0,
+                  paddingBottom: 0,
+                  paddingTop: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                  height: "auto",
+                  paddingBottom: 16,
+                  paddingTop: 16,
+                }}
+                exit={{
+                  opacity: 0,
+                  height: 0,
+                  paddingBottom: 0,
+                  paddingTop: 0,
+                }}
                 transition={{ duration: 0.3 }}
                 style={{ overflow: "hidden" }}
               >
@@ -87,8 +50,18 @@ export default function SummaryBoard({
             <motion.li
               key="empty"
               className={styles.summaryBoard__item}
-              initial={{ opacity: 0, height: 0, paddingBottom: 0, paddingTop: 0 }}
-              animate={{ opacity: 1, height: "auto", paddingBottom: 16, paddingTop: 16 }}
+              initial={{
+                opacity: 0,
+                height: 0,
+                paddingBottom: 0,
+                paddingTop: 0,
+              }}
+              animate={{
+                opacity: 1,
+                height: "auto",
+                paddingBottom: 16,
+                paddingTop: 16,
+              }}
               exit={{ opacity: 0, height: 0, paddingBottom: 0, paddingTop: 0 }}
               transition={{ duration: 0.3 }}
               style={{ overflow: "hidden" }}

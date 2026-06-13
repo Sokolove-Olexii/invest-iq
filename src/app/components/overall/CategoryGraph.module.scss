@@ -49,6 +49,7 @@
     font-weight: 400;
     color: #52555f;
     margin: 0;
+    margin-bottom: 12px;
   }
 
   &_icon {
@@ -58,17 +59,31 @@
   }
 
   &_circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #f5f6fb;
 
-    &:nth-child(odd) {
-      background-color: #eaf0fa;
+    &--income {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      &:nth-child(odd) {
+        background-color: #eaf0fa;
+      }
     }
+
+    &--expanse {
+      position: relative;
+      width: 59px;
+      height: 46px;
+      border-radius: 20px;
+    }
+  }
+
+  &_image--expanse {
+    position: absolute;
+    bottom: 0;
   }
 
   &_label {
@@ -180,12 +195,20 @@
     margin-bottom: 8px;
     transition: height 0.3s ease;
 
-    &--green {
+    &--incomePrimary {
       background-color: #407946;
     }
 
-    &--lightGreen {
+    &--incomeSecondary {
       background-color: #b3d5b7;
+    }
+
+    &--expansePrimary {
+      background-color: #fb7c2f;
+    }
+
+    &--expanseSecondary {
+      background-color: #fcd6bb;
     }
   }
 

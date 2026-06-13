@@ -245,6 +245,14 @@
     pointer-events: none;
   }
 
+  &__amountCurrency {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+
   &__formActions {
     display: flex;
     justify-content: center;

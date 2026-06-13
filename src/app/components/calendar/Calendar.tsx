@@ -1,31 +1,12 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
 import styles from "./Calendar.module.scss";
 import CalendarIcon from "../../../../public/icons/CalendarIcon.svg";
+import useCalendar, { CalendarProps } from "@/hooks/useCalendar/useCalendar";
 
-interface CalendarProps {
-  selectedDate?: Date | null;
-  onChange?: (date: Date | null) => void;
-}
-
-export default function Calendar({
-  selectedDate: externalDate,
-  onChange,
-}: CalendarProps) {
-  const [internalDate, setInternalDate] = useState<Date | null>(new Date());
-
-  const date = externalDate !== undefined ? externalDate : internalDate;
-
-  const handleChange = (newDate: Date | null) => {
-    if (externalDate === undefined) {
-      setInternalDate(newDate);
-    }
-    if (onChange) {
-      onChange(newDate);
-    }
-  };
+export default function Calendar({ selectedDate, onChange }: CalendarProps) {
+  const { date, handleChange } = useCalendar({ selectedDate, onChange });
 
   return (
     <div className={styles.calendarWrapper}>

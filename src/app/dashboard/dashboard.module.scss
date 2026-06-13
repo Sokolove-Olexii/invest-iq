@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1;
+    z-index: 10;
     position: relative;
     flex-shrink: 0;
 
@@ -107,6 +107,15 @@
     }
   }
 
+  &__balanceInteractiveArea {
+    position: relative;
+    width: 100%;
+    
+    @media screen and (min-width: 768px) {
+      width: fit-content;
+    }
+  }
+
   &__balanceContainer {
     display: flex;
     align-items: center;
@@ -128,8 +137,9 @@
   &__inputWrapper {
     width: 50%;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
+    padding: 0 8px;
 
     @media screen and (min-width: 768px) {
       width: 125px;
@@ -137,7 +147,8 @@
       flex: none;
       border: 2px solid #ffffff;
       border-radius: 12px;
-      padding: 0 16px;
+      align-items: baseline;
+      padding-top: 12px;
     }
   }
 
@@ -151,15 +162,12 @@
     color: #000000;
     text-align: right;
     outline: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
 
     &::placeholder {
       color: #000000;
-    }
-
-    @media screen and (min-width: 768px) {
-      width: 100%;
-      max-width: none;
-      text-align: center;
     }
   }
 
@@ -168,6 +176,7 @@
     font-weight: 700;
     color: #000000;
     margin-left: 4px;
+    line-height: 1;
   }
 
   &__balanceSeparator {

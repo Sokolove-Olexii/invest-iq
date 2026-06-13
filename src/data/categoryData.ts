@@ -9,6 +9,8 @@ import ServicesIcon from "../../public/icons/ServicesIcon.svg";
 import HobbyIcon from "../../public/icons/HobbyIcon.svg";
 import BookIcon from "../../public/icons/BookIcon.svg";
 import OtherIcon from "../../public/icons/OtherIcon.svg";
+import SalaryIncomeIcon from "../../public/icons/SalaryIncome.svg";
+import AdditionalIncomeIcon from "../../public/icons/additionalIncome.svg";
 
 export const expanseCategories = [
   { id: "food", label: "Продукти", icon: ProductsIcon, width: 63, height: 56 },
@@ -49,12 +51,18 @@ export const expanseCategories = [
 ];
 
 export const incomeCategories = [
-  { id: "salary", label: "Зарплата", icon: OtherIcon, width: 56, height: 50 },
+  {
+    id: "salary",
+    label: "Зарплата",
+    icon: SalaryIncomeIcon,
+    width: 56,
+    height: 56,
+  },
   {
     id: "additional",
     label: "Дод. дохід",
-    icon: OtherIcon,
+    icon: AdditionalIncomeIcon,
     width: 56,
-    height: 50,
+    height: 56,
   },
 ];
