@@ -1,0 +1,16 @@
+{
+  "name": "InvestIQ | Розумний трекер фінансів",
+  "short_name": "InvestIQ",
+  "description": "Керуйте своїми інвестиціями та фінансами з InvestIQ.",
+  "start_url": "/invest-iq/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff751d",
+  "icons": [
+    {
+      "src": "/invest-iq/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -3,20 +3,14 @@ import { CloseIcon } from "@/assets/icons";
 import { ThreeDots } from "react-loader-spinner";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import Image from "next/image";
-
-interface QuitModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  isLoading?: boolean;
-}
+import { ConfirmModalProps } from "../types";
 
 export default function QuitModal({
   isOpen,
   onClose,
   onConfirm,
   isLoading = false,
-}: QuitModalProps) {
+}: ConfirmModalProps) {
   return (
     <Dialog
       open={isOpen}

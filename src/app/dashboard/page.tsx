@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner";
 import Calendar from "@/app/components/calendar/Calendar";
 import TransactionBoard from "@/app/components/transactionBoard/TransactionBoard";
 import SummaryBoard from "../components/summaryBoard/summaryBoard";
-import FaqModal from "../components/modals/faqModal/faqModal";
+import dynamic from "next/dynamic";
 import LogoScroll from "@/app/components/ui/LogoScroll/LogoScroll";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,6 +21,13 @@ export default function DashboardPage() {
     handleCloseFaq,
     handleSave,
   } = useDashboard();
+
+  const FaqModal = dynamic(
+    () => import("../components/modals/faqModal/faqModal"),
+    {
+      ssr: false,
+    },
+  );
 
   return (
     <section className={styles.dashboard}>

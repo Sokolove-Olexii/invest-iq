@@ -4,6 +4,7 @@ import styles from "./AuthForm.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import supabase from "@/lib/supabase";
+import { handleGoogleLogin } from "@/hooks/useGoogleLogIn/useGoogleLogIn";
 import { GoogleIcon } from "@/assets/icons";
 import LogoScroll from "@/app/components/ui/LogoScroll/LogoScroll";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -14,26 +15,6 @@ import Image from "next/image";
 export default function AuthForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleGoogleLogin = async () => {
-    const basePath = window.location.pathname.startsWith("/invest-iq")
-      ? "/invest-iq"
-      : "";
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}${basePath}/dashboard`,
-        queryParams: {
-          prompt: "select_account",
-        },
-      },
-    });
-    if (error) {
-      console.error("Виникла помилка:", error.message);
-      toast.error("Не вдалося відкрити вікно Google");
-    }
-  };
 
   return (
     <section className={styles.auth}>

@@ -2,18 +2,13 @@ import styles from "./transactionsModal.module.scss";
 import { CloseIcon } from "@/assets/icons";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import Image from "next/image";
+import { ConfirmModalProps } from "../types";
 
-interface QuitModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-}
-
-export default function QuitModal({
+export default function TransactionsModal({
   isOpen,
   onClose,
   onConfirm,
-}: QuitModalProps) {
+}: ConfirmModalProps) {
   return (
     <Dialog
       open={isOpen}

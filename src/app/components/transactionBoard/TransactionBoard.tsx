@@ -5,7 +5,7 @@ import Calendar from "@/app/components/calendar/Calendar";
 import useTransactionBoard from "@/hooks/useTransactionBoard/useTransactionBoard";
 import TransactionCard from "../transactionCard/TransactionCard";
 import { ArrowIcon, CalcIcon } from "@/assets/icons";
-import TransactionsModal from "../modals/transactionsModal/transactionsModal";
+import dynamic from "next/dynamic";
 import SummaryBoard from "../summaryBoard/summaryBoard";
 import { ThreeDots } from "react-loader-spinner";
 import { motion, AnimatePresence } from "framer-motion";
@@ -37,6 +37,13 @@ export default function TransactionBoard() {
     isOpen,
     isLoading,
   } = useTransactionBoard();
+
+  const TransactionsModal = dynamic(
+    () => import("@/app/components/modals/transactionsModal/transactionsModal"),
+    {
+      ssr: false,
+    },
+  );
 
   return (
     <div className={styles.board}>

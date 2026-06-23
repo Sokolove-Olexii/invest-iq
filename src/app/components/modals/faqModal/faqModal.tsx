@@ -2,14 +2,9 @@ import styles from "./faqModal.module.scss";
 import { CloseIcon } from "@/assets/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { BaseModalProps } from "../types";
 
-interface faqModalProps {
-  isOpen: boolean;
-  isLoading?: boolean;
-  onClose: () => void;
-}
-
-export default function FaqModal({ isOpen, onClose }: faqModalProps) {
+export default function FaqModal({ isOpen, onClose }: BaseModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (

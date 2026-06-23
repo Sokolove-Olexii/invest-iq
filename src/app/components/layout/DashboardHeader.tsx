@@ -2,7 +2,7 @@
 
 import styles from "./DashboardHeader.module.scss";
 import Logo from "../ui/Logo";
-import QuitModal from "../modals/quitModal/quitModal";
+import dynamic from "next/dynamic";
 import { LogOutIcon } from "@/assets/icons";
 import useDashboardHeader from "@/hooks/useDashboardHeader/useDashboardHeader";
 import { motion } from "framer-motion";
@@ -16,6 +16,10 @@ export default function DashboardHeader() {
     setIsQuitModalOpen,
     handleLogout,
   } = useDashboardHeader();
+
+  const QuitModal = dynamic(() => import("../modals/quitModal/quitModal"), {
+    ssr: false,
+  });
 
   return (
     <motion.header

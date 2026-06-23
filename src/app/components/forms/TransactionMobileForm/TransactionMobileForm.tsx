@@ -4,7 +4,7 @@ import styles from "./TransactionMobileForm.module.scss";
 import { BackIcon, ArrowIcon, CalcIcon } from "@/assets/icons";
 import { ThreeDots } from "react-loader-spinner";
 import useTransactionForm from "@/hooks/useTransactionForm/useTransactionForm";
-import TransactionsModal from "@/app/components/modals/transactionsModal/transactionsModal";
+import dynamic from "next/dynamic";
 import Calendar from "@/app/components/calendar/Calendar";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -14,7 +14,9 @@ interface TransactionMobileFormProps {
   type: "income" | "expanse";
 }
 
-export default function TransactionMobileForm({ type }: TransactionMobileFormProps) {
+export default function TransactionMobileForm({
+  type,
+}: TransactionMobileFormProps) {
   const {
     isLoading,
     isOpen,
@@ -35,6 +37,13 @@ export default function TransactionMobileForm({ type }: TransactionMobileFormPro
     setDate,
     categories,
   } = useTransactionForm(type);
+
+  const TransactionsModal = dynamic(
+    () => import("@/app/components/modals/transactionsModal/transactionsModal"),
+    {
+      ssr: false,
+    },
+  );
 
   return (
     <section className={styles.form}>
