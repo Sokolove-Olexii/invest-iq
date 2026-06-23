@@ -2,4 +2,4 @@
 2:I[26072,["/invest-iq/_next/static/chunks/08k5sb-9s.jfu.js","/invest-iq/_next/static/chunks/0uy0ah4~jhaon.js"],"default"]
 3:I[72324,["/invest-iq/_next/static/chunks/08k5sb-9s.jfu.js","/invest-iq/_next/static/chunks/0uy0ah4~jhaon.js"],"default"]
 4:[]
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"1-LIIyV-gQcAQMkLxu_qd"}
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"VyXEOy9a1r5bY4AYvSjzq"}
