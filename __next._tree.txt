@@ -6,4 +6,4 @@
 :HL["/invest-iq/_next/static/chunks/0ddv4i57zvlim.css","style"]
 :HL["/invest-iq/_next/static/chunks/0du9o-2c5m-at.css","style"]
 :HL["/invest-iq/_next/static/chunks/0sejnlj_~ug8_.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"OJPxLSuS3gW8y7aCyX9wd"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"1-LIIyV-gQcAQMkLxu_qd"}
