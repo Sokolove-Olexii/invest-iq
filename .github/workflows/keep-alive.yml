@@ -3,7 +3,7 @@ name: Supabase Keep Alive
 on:
   schedule:
     - cron: '0 0 */3 * *'
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   ping:
@@ -13,4 +13,4 @@ jobs:
         run: |
           curl -s -o /dev/null -w "%{http_code}" \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-          "https://utunrsnwxfxmhgmklacd.supabase.co/rest/v1/keep_alive?select=*&limit=1"
+          "https://rpesvacfralukmjymdes.supabase.co/rest/v1/profiles?select=*&limit=1"
